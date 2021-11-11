@@ -5,14 +5,14 @@
     "authors": [
         {
             "name": "Masoud Salehi",
-            "email": "mimsalehi1991@gmail.com",
-            "homepage": "https//roxo.ir"
+            "email": "mimsalehi1991@gmail.comm",
+            "homepage": "https://roxo.ir"
         }
     ],
     "homepage": "https://github.com/mimsalehi/activecampaign",
     "keywords": ["Laravel", "ActiveCampaign"],
     "require": {
-        "illuminate/support": "~7|~8"
+        "illuminate/support": "~6|~8"
     },
     "require-dev": {
         "phpunit/phpunit": "~9.0",

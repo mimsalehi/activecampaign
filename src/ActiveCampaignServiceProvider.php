@@ -3,6 +3,7 @@
 namespace MimSalehi\ActiveCampaign;
 
 use Illuminate\Support\ServiceProvider;
+use MimSalehi\ActiveCampaign\Classes\Contact;
 
 class ActiveCampaignServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,9 @@ class ActiveCampaignServiceProvider extends ServiceProvider
         // Register the service the package provides.
         $this->app->singleton('activecampaign', function ($app) {
             return new ActiveCampaign;
+        });
+        $this->app->bind('contact', function ($app) {
+            return new Contact();
         });
     }
 
