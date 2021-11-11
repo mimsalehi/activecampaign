@@ -81,6 +81,6 @@ class Contact
      */
     public function list(): array
     {
-        return $this->make_request(self::GET, 'contacts', [], $this->headers, $this->baseUri);
+        return $this->make_request(self::GET, 'fields?limit=2000', [], $this->headers, $this->baseUri);
     }
 }
