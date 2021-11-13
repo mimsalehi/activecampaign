@@ -4,6 +4,7 @@ namespace MimSalehi\ActiveCampaign;
 
 use Illuminate\Support\ServiceProvider;
 use MimSalehi\ActiveCampaign\Classes\Contact;
+use MimSalehi\ActiveCampaign\Classes\EventTracking;
 
 class ActiveCampaignServiceProvider extends ServiceProvider
 {
@@ -41,6 +42,9 @@ class ActiveCampaignServiceProvider extends ServiceProvider
         $this->app->bind('contact', function ($app) {
             return new Contact();
         });
+        $this->app->bind('event', function ($app) {
+            return new EventTracking();
+        });
     }
 
     /**
@@ -50,7 +54,7 @@ class ActiveCampaignServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['activecampaign'];
+        return ['activecampaign', 'contact', 'eventtracking'];
     }
 
     /**

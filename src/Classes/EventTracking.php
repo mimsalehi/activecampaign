@@ -3,9 +3,10 @@
 namespace MimSalehi\ActiveCampaign\Classes;
 
 
+use JetBrains\PhpStorm\NoReturn;
 use MimSalehi\ActiveCampaign\Traits\HttpRequest;
 
-class Contact
+class EventTracking
 {
     use HttpRequest;
 
@@ -23,6 +24,14 @@ class Contact
      */
     protected $baseUri;
 
+
+    /**
+     * ActiveCampaign Account Id.
+     *
+     * @var integer
+     */
+    protected $actid;
+
     /**
      * Http Requests Headers.
      *
@@ -30,6 +39,12 @@ class Contact
      */
     protected $headers;
 
+    /**
+     * ActiveCampaign Event Tracking Key.
+     *
+     * @var string
+     */
+    protected $eventKey;
 
     const GET = 'GET';
     const POST = 'POST';
@@ -38,11 +53,12 @@ class Contact
     public function __construct(array $config = [])
     {
         $this->config = empty($config) ? $this->loadDefaultConfig() : $config;
-        $this->baseUri = $this->config['api_url'] . '/api/3/';
+        $this->baseUri = 'https://trackcmp.net/';
         $this->headers = [
             'Api-Token' => $this->config['api_key']
         ];
-
+        $this->actid = $this->config['account_id'];
+        $this->eventKey = $this->config['event_key'];
     }
 
     /**
@@ -65,22 +81,22 @@ class Contact
         return require(static::getDefaultConfigPath());
     }
     /**
-     * Create or Update Contact.
+     * Event tracking by name.
      *
      * @return array
      */
-    public function createOrUpdate($data): array
+    public function tracking($email, $eventName, $extra = null): array
     {
-        return $this->make_request(self::POST, 'contact/sync', $data, $this->headers, $this->baseUri);
+        $data = [
+            'actid' => $this->actid,
+            'key' => $this->eventKey,
+            'event' => $eventName,
+            'eventData' => $extra,
+            "visit" => json_encode([
+                'email' => $email
+            ])
+        ];
+        return $this->make_request(self::POST, 'event', $data, $this->headers, $this->baseUri, true);
     }
 
-    /**
-     * Retrieve Contact Lists.
-     *
-     * @return array
-     */
-    public function list(): array
-    {
-        return $this->make_request(self::GET, 'contacts', [], $this->headers, $this->baseUri);
-    }
 }

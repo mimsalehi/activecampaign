@@ -14,7 +14,7 @@ trait HttpRequest
      * @return array
      */
 
-    protected function make_request(string $method, string $path, array $body = [], array $headers = [], $baseUri = null)
+    protected function make_request(string $method, string $path, array $body = [], array $headers = [], $baseUri = null, $urlEncoded = null)
     {
         $client = new Client([
             'base_uri' => $baseUri,
@@ -28,9 +28,15 @@ trait HttpRequest
                 $response = $client->get($path);
                 break;
             case 'POST':
-                $response = $client->post($path, [
-                    'json' => $body,
-                ]);
+                if($urlEncoded){
+                    $response = $client->post($path, [
+                        'form_params' => $body,
+                    ]);
+                }else{
+                    $response = $client->post($path, [
+                        'json' => $body,
+                    ]);
+                }
                 break;
             case 'DELETE':
                 $response = $client->delete($path);
