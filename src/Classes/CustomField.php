@@ -70,8 +70,11 @@ class CustomField
      *
      * @return array
      */
-    public function list(): array
+    public function list($limit = null): array
     {
-        return $this->make_request(self::GET, 'fieldValues', [], $this->headers, $this->baseUri);
+        if(!isset($limit)){
+            $limit = 100;
+        }
+        return $this->make_request(self::GET, `fields?limit=${$limit}`, [], $this->headers, $this->baseUri);
     }
 }
