@@ -76,6 +76,6 @@ class CustomField
             $limit = 100;
         }
         $limit = strval($limit);
-        return $this->make_request(self::GET, `fields?limit={$limit}`, [], $this->headers, $this->baseUri);
+        return $this->make_request(self::GET, 'fields?limit='.$limit, [], $this->headers, $this->baseUri);
     }
 }
