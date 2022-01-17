@@ -75,6 +75,6 @@ class CustomField
         if(!isset($limit)){
             $limit = 100;
         }
-        return $this->make_request(self::GET, `fields?limit=${$limit}`, [], $this->headers, $this->baseUri);
+        return $this->make_request(self::GET, `fields?limit=${limit}`, [], $this->headers, $this->baseUri);
     }
 }
