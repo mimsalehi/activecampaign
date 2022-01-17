@@ -67,7 +67,7 @@ class CustomField
 
     /**
      * Retrieve custom fields lists.
-     *
+     * @param $limit
      * @return array
      */
     public function list($limit = null): array
@@ -75,6 +75,7 @@ class CustomField
         if(!isset($limit)){
             $limit = 100;
         }
+        $limit = strval($limit);
         return $this->make_request(self::GET, `fields?limit={$limit}`, [], $this->headers, $this->baseUri);
     }
 }
