@@ -84,7 +84,7 @@ class Deal
      *
      * @return array
      */
-    public function tracking($data): array
+    public function create($data): array
     {
         return $this->make_request(self::POST, 'deals', $data, $this->headers, $this->baseUri, true);
     }
