@@ -52,12 +52,10 @@ class Deal
     public function __construct(array $config = [])
     {
         $this->config = empty($config) ? $this->loadDefaultConfig() : $config;
-        $this->baseUri = 'https://trackcmp.net/';
+        $this->baseUri = $this->config['api_url'] . '/api/3/';
         $this->headers = [
             'Api-Token' => $this->config['api_key']
         ];
-        $this->actid = $this->config['account_id'];
-        $this->eventKey = $this->config['event_key'];
     }
 
     /**
