@@ -83,4 +83,15 @@ class Contact
     {
         return $this->make_request(self::GET, 'contacts', [], $this->headers, $this->baseUri);
     }
+
+    /**
+     * Retrieve a Contact.
+     *
+     * @param $email string
+     * @return array
+     */
+    public function find($email): array
+    {
+        return $this->make_request(self::GET, "contacts?filters[email]={$email}", [], $this->headers, $this->baseUri);
+    }
 }
