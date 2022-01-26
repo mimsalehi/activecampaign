@@ -90,7 +90,7 @@ class Contact
      * @param $email string
      * @return array
      */
-    public function find($email): array
+    public function find(string $email): array
     {
         return $this->make_request(self::GET, "contacts?filters[email]={$email}", [], $this->headers, $this->baseUri);
     }
