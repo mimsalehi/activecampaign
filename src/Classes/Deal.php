@@ -84,7 +84,7 @@ class Deal
      */
     public function create($data): array
     {
-        return $this->make_request(self::POST, 'deals', $data, $this->headers, $this->baseUri, true);
+        return $this->make_request(self::POST, 'deals', $data, $this->headers, $this->baseUri);
     }
 
 }
