@@ -94,4 +94,13 @@ class Contact
     {
         return $this->make_request(self::GET, "contacts?filters[email]={$email}", [], $this->headers, $this->baseUri);
     }
+
+    /**
+     * @param string $contactId
+     * @return array
+     */
+    public function deal(string $contactId): array
+    {
+        return $this->make_request(self::GET, "contacts/{$contactId}/deals", [], $this->headers, $this->baseUri);
+    }
 }
