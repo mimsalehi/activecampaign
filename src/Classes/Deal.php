@@ -48,6 +48,7 @@ class Deal
     const GET = 'GET';
     const POST = 'POST';
     const DELETE = 'DELETE';
+    const PUT = 'PUT';
 
     public function __construct(array $config = [])
     {
@@ -77,14 +78,21 @@ class Deal
     {
         return require(static::getDefaultConfigPath());
     }
+
     /**
      * Create Deal
      *
+     * @param $data
      * @return array
      */
     public function create($data): array
     {
         return $this->make_request(self::POST, 'deals', $data, $this->headers, $this->baseUri);
+    }
+
+    public function update($data): array
+    {
+        return $this->make_request(self::PUT, "deals/{$data['id']}", $data, $this->headers, $this->baseUri);
     }
 
 }
