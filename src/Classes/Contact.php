@@ -99,7 +99,7 @@ class Contact
      * @param string $contactId
      * @return array
      */
-    public function deal(string $contactId): array
+    public function deals(string $contactId): array
     {
         return $this->make_request(self::GET, "contacts/{$contactId}/deals", [], $this->headers, $this->baseUri);
     }
