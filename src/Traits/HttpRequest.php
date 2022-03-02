@@ -5,6 +5,7 @@ use GuzzleHttp\Client;
 
 trait HttpRequest
 {
+    //POST PUT DELETE GET
     /**
      * @param string $method
      * @param string $path
