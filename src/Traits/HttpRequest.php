@@ -38,6 +38,17 @@ trait HttpRequest
                     ]);
                 }
                 break;
+            case 'PUT':
+                if($urlEncoded){
+                    $response = $client->put($path, [
+                        'form_params' => $body,
+                    ]);
+                }else{
+                    $response = $client->put($path, [
+                        'json' => $body,
+                    ]);
+                }
+                break;
             case 'DELETE':
                 $response = $client->delete($path);
                 break;
