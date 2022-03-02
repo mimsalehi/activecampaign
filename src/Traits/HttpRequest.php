@@ -8,10 +8,12 @@ trait HttpRequest
     /**
      * @param string $method
      * @param string $path
-     * @param string $baseUri
      * @param array $body
      * @param array $headers
+     * @param null $baseUri
+     * @param null $urlEncoded
      * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
 
     protected function make_request(string $method, string $path, array $body = [], array $headers = [], $baseUri = null, $urlEncoded = null)
