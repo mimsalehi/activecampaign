@@ -52,7 +52,10 @@ class EventTracking
 
     public function __construct(array $config = [])
     {
-        $this->config = empty($config) ? $this->loadDefaultConfig() : $config;
+        $configurations = config('activecampaign');
+
+        $this->config = empty($configurations) ? $this->loadDefaultConfig() : $configurations;
+ 
         $this->baseUri = 'https://trackcmp.net/';
         $this->headers = [
             'Api-Token' => $this->config['api_key']

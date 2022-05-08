@@ -52,7 +52,10 @@ class Deal
 
     public function __construct(array $config = [])
     {
-        $this->config = empty($config) ? $this->loadDefaultConfig() : $config;
+        $configurations = config('activecampaign');
+
+        $this->config = empty($configurations) ? $this->loadDefaultConfig() : $configurations;
+        
         $this->baseUri = $this->config['api_url'] . '/api/3/';
         $this->headers = [
             'Api-Token' => $this->config['api_key']
